@@ -1,0 +1,200 @@
+{
+  "mapData": [{
+    "source": "大庆",
+    "target": "武汉"
+  }, {
+    "source": "平顶山",
+    "target": "鞍山"
+  }, {
+    "source": "上海",
+    "target": "鞍山"
+  }, {
+    "source": "上海",
+    "target": "合肥"
+  }, {
+    "source": "上海",
+    "target": "北京"
+  }, {
+    "source": "上海",
+    "target": "克拉玛依"
+  }, {
+    "source": "上海",
+    "target": "兰州"
+  }, {
+    "source": "上海",
+    "target": "南京"
+  }, {
+    "source": "上海",
+    "target": "沈阳"
+  }, {
+    "source": "上海",
+    "target": "长沙"
+  }, {
+    "source": "上海",
+    "target": "兰州"
+  }, {
+    "source": "上海",
+    "target": "温州"
+  }, {
+    "source": "上海",
+    "target": "深圳"
+  }, {
+    "source": "上海",
+    "target": "珠海"
+  }, {
+    "source": "上海",
+    "target": "济南"
+  }, {
+    "source": "上海",
+    "target": "三门峡"
+  }, {
+    "source": "上海",
+    "target": "拉萨"
+  }, {
+    "source": "上海",
+    "target": "洛阳"
+  }],
+  "funnelData": [
+    [{
+        "value": 100,
+        "name": "无告警"
+      }, {
+        "value": 80,
+        "name": "正常"
+      }, {
+        "value": 60,
+        "name": "访问"
+      },
+      {
+        "value": 40,
+        "name": "咨询"
+      },
+      {
+        "value": 20,
+        "name": "紧急"
+      }
+    ],
+    [{
+        "value": 100,
+        "name": "无告警"
+      }, {
+        "value": 80,
+        "name": "正常"
+      }, {
+        "value": 60,
+        "name": "访问"
+      },
+      {
+        "value": 40,
+        "name": "咨询"
+      },
+      {
+        "value": 20,
+        "name": "紧急"
+      }
+    ]
+  ],
+  "warningData": {
+    "xAxis": [],
+    "data": [
+      [150, 212, 201, 154, 190, 330, 410],
+      [150, 212, 201, 154, 190, 330, 410],
+      [820, 832, 901, 934, 1290, 1330, 1320]
+    ]
+  },
+  "fitData": [{
+    "name": "自愈工单",
+    "value": "12345"
+  }, {
+    "name": "人工修复",
+    "value": "12341"
+  }],
+  "fitData2": [{
+    "name": "实施修复",
+    "value": "12345"
+  }, {
+    "name": "研发修复",
+    "value": "12341"
+  }, {
+    "name": "运维修复",
+    "value": "12341"
+  }],
+  "onlineData": [{
+    "name": "在线",
+    "value": "12345"
+  }, {
+    "name": "离线",
+    "value": "12341"
+  }],
+  "statusData": [{
+    "label": "今日工单",
+    "value": "0"
+  }, {
+    "label": "未完结工单",
+    "value": "123"
+  }, {
+    "label": "累计工单",
+    "value": "512341"
+  }, {
+    "label": "自愈工单",
+    "value": "12345"
+  }, {
+    "label": "平均耗时",
+    "value": "12341"
+  }, {
+    "label": "研发修复",
+    "value": "141"
+  }],
+  "countData": [{
+    "day": "1",
+    "value": "123"
+  }, {
+    "day": "2",
+    "value": "134"
+  }, {
+    "day": "3",
+    "value": "546"
+  }, {
+    "day": "4",
+    "value": "345"
+  }, {
+    "day": "5",
+    "value": "234"
+  }, {
+    "day": "6",
+    "value": "41"
+  }, {
+    "day": "7",
+    "value": "234"
+  }, {
+    "day": "8",
+    "value": "123"
+  }, {
+    "day": "9",
+    "value": "452"
+  }, {
+    "day": "10",
+    "value": "234"
+  }, {
+    "day": "11",
+    "value": "312"
+  }, {
+    "day": "12",
+    "value": "231"
+  }, {
+    "day": "13",
+    "value": "512"
+  }, {
+    "day": "14",
+    "value": "546"
+  }, {
+    "day": "15",
+    "value": "451"
+  }, {
+    "day": "16",
+    "value": "123"
+  }, {
+    "day": "17",
+    "value": "214"
+  }]
+}
