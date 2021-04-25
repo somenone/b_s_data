@@ -3,11 +3,11 @@
   <!-- <div class="b-s-title">运维管理系统</div> -->
   <div class="b-s-content flex height-100">
     <div class="b-s-left width-20 flex flex-d-c">
-      <self-section title="警报事件" class="flex-b-33">
+      <self-section title="告警分析" class="flex-b-33">
         <!-- <simple-data :list="statusData"></simple-data> -->
         <funnel-charts class="w-h-100" :data="funnelData"></funnel-charts>
       </self-section>
-      <self-section title="工单状态" class="flex-b-25">
+      <self-section title="工单分析" class="flex-b-17">
         <div class="flex flex-d-c height-100">
           <simple-data :list="statusData"></simple-data>
           <div class="height-100 flex">
@@ -21,10 +21,9 @@
           <line-charts class="flex flex-1" v-bind="countData"></line-charts>
         </div>
       </self-section> -->
-      <self-section title="节点网络" class="flex-b-25">
-        <div class="flex height-100">
-          <pie-charts class="height-100 width-50" :data="fitData"></pie-charts>
-          <pie-charts class="height-100 width-50" :data="fitData2"></pie-charts>
+      <self-section title="项目分析" class="flex-b-50">
+        <div class="flex flex-d-c height-100">
+          <bar-charts class="flex-1" v-bind="warningData" col></bar-charts>
         </div>
       </self-section>
     </div>
@@ -41,21 +40,38 @@
           </el-dialog>
         </div>
       </self-section>
-      <self-section title="近12月服务库变化" class="flex-b-25">
+      <self-section title="地区" class="flex-b-25">
         <div ref="btmTable" class="flex flex-d-c w-h-100 flex-1">
           <!-- <line-charts class="flex flex-1" v-bind="countData"></line-charts> -->
-          <self-table v-if="tableHeight>0" class="self-table" :tableHeader="tableHeader" :data="tableData" :max-height="tableHeight"></self-table>
+          <self-table v-if="tableHeight>0" class="self-table" :tableHeader="tableHeader" :data="tableData" :show-header="false" :max-height="tableHeight"></self-table>
         </div>
       </self-section>
     </div>
     <div class="flex flex-d-c width-20">
       
-      <self-section title="近12月警报数量" class="flex-b-25">
+      <!-- <self-section title="近12月警报数量" class="flex-b-25">
         <div class="flex flex-d-c height-100">
           <bar-charts class="flex-1" v-bind="warningData"></bar-charts>
         </div>
+      </self-section> -->
+      <self-section title="网络质量" class="flex-b-25">
+        <div class="flex flex-d-c height-100">
+          <simple-data :list="statusData2"></simple-data>
+          <div class="height-100 flex">
+            <!-- <pie-charts class="height-100 width-50" :data="fitData"></pie-charts>
+            <pie-charts class="height-100 width-50" :data="fitData2"></pie-charts> -->
+          </div>
+        </div>
       </self-section>
-      <self-section title="节点状态" class="flex-b-50">
+      
+      <self-section title="传输流量" class="flex-b-25">
+        <div class="flex height-100">
+          <!-- <pie-charts class="height-100 width-50" :data="fitData"></pie-charts>
+          <pie-charts class="height-100 width-50" :data="fitData2"></pie-charts> -->
+          <line-charts class="flex flex-1" v-bind="countData"></line-charts>
+        </div>
+      </self-section>
+      <self-section title="TOP产品排序" class="flex-b-50">
         <div class="flex flex-d-c height-100">
           <bar-charts class="flex-1" v-bind="warningData" col></bar-charts>
         </div>
@@ -74,6 +90,7 @@ import barCharts from '@/components/charts/barChart';//柱状图
 import funnelCharts from '@/components/charts/funnel';//漏斗图
 import mapCharts from '@/components/charts/map';//地图
 import selfTable from '@/components/table';//表格
+import {submitFlow} from '@/api/chartData.js';
 
 import data from '@/utils/data.json';
 import {setArrData} from '@/utils/chartEvent';
@@ -95,6 +112,7 @@ export default {
     return {
       title:"运维管理平台",
       statusData:data.statusData,
+      statusData2:data.statusData2,
       mapData: data.mapData,
       fitData:data.fitData,
       fitData2:data.fitData2,
@@ -112,44 +130,29 @@ export default {
       },{
         label:"b字段",
         prop:"b"
-      },{
-        label:"c字段",
-        prop:"c"
       }],
       tableData:[{//表格数据 
-        a:"asd",
-        b:"asd",
+        a:"上海一区",
+        b:"123",
         c:"asd"
       },{
-        a:"asd",
-        b:"asd",
+        a:"上海二区",
+        b:"345",
         c:"asd"
       },{
-        a:"asd",
-        b:"asd",
+        a:"上海三区",
+        b:"124",
         c:"asd"
       },{
-        a:"asd",
-        b:"asd",
+        a:"上海四区",
+        b:"42",
         c:"asd"
-      },{
-        a:"asd",
-        b:"asd",
-        c:"asd"
-      },{
-        a:"asd",
-        b:"asd",
-        c:"asd"
-      },{
-        a:"asd",
-        b:"asd",
-        c:"asd"
-      },],
+      }],
       interVal:null
     }
   },
   methods: {
-    tabClick(index){
+    tabClick(index){ //地图点击
       this.interVal && window.clearInterval(this.interVal)
       this.activeTabIndex = index
       this.interVal = setInterval(() => {///轮播定时器
@@ -161,19 +164,27 @@ export default {
       this.dialogVisible = true
       console.log(this.dialogVisible);
     },
-    changeMapData(tabName){
+    changeMapData(tabName){///地图tab改变
       // this.mapData = this.mapData
       console.log(tabName);
       this.mapData = setTestMapData()
 
+    },
+    async submitFlow(){
+      let res = await submitFlow({})
+      this.statusData = res.data
+
     }
   },
   mounted(){
+    console.log(this.warningData);
     this.tableHeight = this.$refs.btmTable.clientHeight
     this.interVal = setInterval(() => {///轮播定时器
       this.activeTabIndex = (this.activeTabIndex+1)%this.tabArr.length
 
     }, 5000);
+
+    // this.submitFlow()
   },
   watch:{
     activeTabIndex(){
@@ -208,6 +219,13 @@ export default {
 .self-table .el-table--enable-row-hover .el-table__body tr:hover>td{
   background-color: rgba(0, 0, 0, 0)
 
+}
+.self-table .el-table td,.self-table .el-table th.is-leaf{
+  border: none;
+}
+
+.self-table .el-table::before{
+  display: none;
 }
 .options{
   z-index: 1;

@@ -19,6 +19,9 @@ export default {
     // this.options = options
   },
   mounted(){
+    console.log(this.$props);
+    this.xAxis?this.options.xAxis.data = this.xAxis:null
+
     if(this.col||this.col === ''){
       let [x,y] = [this.options.xAxis,this.options.yAxis]
       this.options.yAxis = x
@@ -29,7 +32,6 @@ export default {
       width:"auto",
       height:"auto"
     })
-    this.xAxis?this.options.xAxis.data = this.xAxis:null
     this.c_updateData()
   },
   watch:{

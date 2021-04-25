@@ -1,6 +1,6 @@
 <template>
   <div>
-    <el-table :data="data" @row-dblclick="inrowDbclick" :max-height="maxHeight">
+    <el-table :data="data" @row-dblclick="inrowDbclick" :max-height="maxHeight" :show-header="showHeader">
       <!-- <el-table-column prop="name" label="更新时间" width="80"> </el-table-column> -->
       <el-table-column
         v-for="(item, index) in tableHeader"
@@ -29,7 +29,7 @@
 
 <script>
 export default {
-  props: ["data", "tableHeader","fixed","rowDbclick","maxHeight"],
+  props: ["data", "tableHeader","fixed","rowDbclick","maxHeight","showHeader"],
   methods: {
     inrowDbclick(row,column,event){
       this.$emit("rowDbclick",row,column,event)

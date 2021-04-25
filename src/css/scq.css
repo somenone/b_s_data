@@ -252,6 +252,9 @@ a{
 .flex-b-75{
   flex-basis: 75%;
 }
+.flex-b-33{
+  flex-basis: 33%;
+}
 .flex-b-50{
   flex-basis: 50%;
 }

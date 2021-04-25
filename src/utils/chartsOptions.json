@@ -192,6 +192,7 @@
     },
     "legend": {
       "bottom": "5%",
+      "show":false,
       "left": "center",
       "itemWidth": 9,
       "itemHeight": 9,
