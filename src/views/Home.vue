@@ -31,9 +31,10 @@
       <self-section title="近12月服务库变化" class="flex-b-75">
         <div class="relative flex flex-d-c height-100 flex-1">
           <div class="absolute top-left options">
+            <a href="javascripe:;" @click="mapBack" class="margin-next-20">back</a>
             <a href="javascripe:;" class="margin-next-20" v-for="(item,index) in tabArr" :key="index" :class="{'active-tab':activeTabIndex === index}"  @click="tabClick(index)">{{item}}</a>
           </div>
-          <map-charts class="flex flex-1" :data="mapData" @clickScatter="clickScatter"></map-charts>
+          <map-charts class="flex flex-1" :data="mapData" @clickScatter="clickScatter" @provinceClick="provinceClick" :nowMap="nowMap" provinceClick></map-charts>
           <!-- <line-charts class="flex flex-1" v-bind="countData"></line-charts> -->
           <el-dialog :visible.sync="dialogVisible" class="self-dialog" append-to-body>
             <self-table class="self-table" :tableHeader="tableHeader" :data="tableData" :max-height="800"></self-table>
@@ -114,6 +115,9 @@ export default {
       statusData:data.statusData,
       statusData2:data.statusData2,
       mapData: data.mapData,
+      nowMap:{
+        name:"china"
+      },
       fitData:data.fitData,
       fitData2:data.fitData2,
       onlineData:data.onlineData,
@@ -164,11 +168,20 @@ export default {
       this.dialogVisible = true
       console.log(this.dialogVisible);
     },
+    provinceClick(name){///点击地图省份
+      this.mapData = setTestMapData()
+      // this.interVal && window.clearInterval(this.interVal)
+      this.tabClick(this.activeTabIndex)
+
+    },
     changeMapData(tabName){///地图tab改变
       // this.mapData = this.mapData
       console.log(tabName);
       this.mapData = setTestMapData()
 
+    },
+    mapBack(){
+      this.nowMap.name = "china"
     },
     async submitFlow(){
       let res = await submitFlow({})
